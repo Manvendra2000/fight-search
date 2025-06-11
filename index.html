@@ -261,7 +261,8 @@
 					
 							<!-- Explore Button -->
 							<div class="col-md-2 col-sm-6">
-							<button onclick="fetchFlights()" type="button" class="btn btn-teal w-100" style="background-color: #00b39f; color: white;">Explore</button>
+							<!-- <button onclick="fetchFlights()" type="button" class="btn btn-teal w-100" style="background-color: #00b39f; color: white;">Explore</button> -->
+							<button onclick="fetchAndRedirect()" type="button" class="btn btn-teal w-100" style="background-color: #00b39f; color: white;">Explore</button>
 							</div>					
 						</div>					
 					</div>
@@ -1329,6 +1330,28 @@ picker.on('render', () => {
   },
   plugins: ['ranges']
 });
+</script>
+
+
+<!-- fetch and redirect to test  -->
+<script>
+function fetchAndRedirect() {
+  const origin = extractIATACode(document.getElementById("fromInput").value);
+  const destination = extractIATACode(document.getElementById("toInput").value);
+  const rawDate = document.getElementById("departure").value; // format: YYYY-MM-DD
+
+  const [year, month, day] = rawDate.split("-");
+  const startDate = `${day}${month}${year}`; // → 12092025
+
+  const url = `http://localhost:3000/api/flights?from=${origin}&to=${destination}&date=${startDate}`;
+  localStorage.setItem("flightQuery", url);
+  window.location.href = "text.html";
+}
+
+function extractIATACode(input) {
+  const match = input.match(/\((\w{3})\)$/);
+  return match ? match[1] : input;
+}
 </script>
 
 </body>

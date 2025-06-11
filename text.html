@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flight Search</title>
+  <style>
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin: 10px; max-width: 300px; font-family: sans-serif; }
+    .card img { width: 50px; }
+    .btn-book { background: #01b39f; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Available Flights</h2>
+  <div id="flights-container"></div>
+
+  <script>
+    async function loadFlights() {
+      const queryUrl = localStorage.getItem("flightQuery");
+      const response = await fetch(queryUrl);
+      const flights = await response.json();
+      const container = document.getElementById('flights-container');
+
+      flights.forEach(flight => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const airlineCode = flight.airline.split(' ').pop().replace(/\W/g, '') || 'default';
+
+        card.innerHTML = `
+          <img src="images/flights/${airlineCode}.png" alt="${flight.airline}" />
+          <p><strong>${flight.airline} ${flight.flightNumber}</strong></p>
+          <p>Departure: ${flight.dep}</p>
+          <p>Arrival: ${flight.arr}</p>
+          <p>Duration: ${flight.duration}</p>
+          <p>Price: ${flight.price}</p>
+          <p>${flight.baggage}</p>
+          <button class="btn-book">Book</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    loadFlights();
+  </script>
+</body>
+</html>
