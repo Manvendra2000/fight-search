@@ -1214,7 +1214,7 @@ setInterval(changeWord, 4000);
                 </div>
                 <div class="text-center">
                   <span class="badge bg-light text-dark border mb-1">${flight.duration}</span>
-                  <img src="images/flights/${flight.airlineCode}.png" width="32" alt="${flight.airline}">
+                  <img src="images/flights/${flight.airline}.png" width="32" alt="${flight.airline}">
                   <div class="small text-muted">Direct</div>
                 </div>
                 <div>
@@ -1231,7 +1231,7 @@ setInterval(changeWord, 4000);
                 </div>
                 <div class="text-center">
                   <span class="badge bg-light text-dark border mb-1">${flight.inbound_duration || 'N/A'}</span>
-                  <img src="images/flights/${flight.inbound_airlineCode || flight.airlineCode}.png" width="32" alt="${flight.inbound_airline || flight.airline}">
+                  <img src="images/flights/${flight.inbound_airlineCode || flight.airline}.png" width="32" alt="${flight.inbound_airline || flight.airline}">
                   <a href="#" class="text-decoration-none small text-primary">${flight.inbound_stops || 'Direct'}</a>
                 </div>
                 <div>
