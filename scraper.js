@@ -3,7 +3,10 @@ const puppeteer = require('puppeteer');
 async function scrapeIxigo(origin, destination, date) {
   const browser = await puppeteer.launch({
     headless: false,
-    args: ['--disable-features=Geolocation']
+    args: [
+      '--disable-features=Geolocation',
+      '--blink-settings=imagesEnabled=false' // Improve performance
+    ]
   });
   const page = await browser.newPage();
   const url = `https://www.ixigo.com/search/result/flight/${origin}/${destination}/${date}/1/0/0/e`;
