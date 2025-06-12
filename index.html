@@ -1345,7 +1345,9 @@ function fetchAndRedirect() {
 
   const url = `http://localhost:3000/api/flights?from=${origin}&to=${destination}&date=${startDate}`;
   localStorage.setItem("flightQuery", url);
-  window.location.href = "search1.html";
+//   window.location.href = "search1.html";
+//   console.log("Redirecting to:", `search1.html?origin=${origin}&destination=${destination}`);
+window.location.href = `search1.html?origin=${origin}&destination=${destination}`;
 }
 
 function extractIATACode(input) {
