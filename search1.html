@@ -1251,17 +1251,26 @@ setInterval(changeWord, 4000);
             </div>
             <div class="col-md-4 d-flex flex-column justify-content-center align-items-center p-3 border-start">
               <h4 class="fw-bold mb-3">${flight.price}</h4>
-              <button class="btn text-white w-100" style="background-color:#188754; position: relative; top: 40%">Select</button>
+             <button class="btn text-white w-100 select-btn"
+        style="background-color:#188754; position: relative; top: 40%"
+        data-flight='${JSON.stringify(flight)}'>Select</button>
             </div>
           </div>
         `;
+			card.querySelector('.select-btn').addEventListener('click', () => {
+			localStorage.setItem('selectedFlight', JSON.stringify(flight));
+			window.location.href = 'search_steps.html';
+			});
         container.appendChild(card);
 		console.log(flights); // ✅ now shows in DevTools Console
       });
     }
     loadFlights();
-    </script>
 
+
+    </script>
+<script>
+</script>
 
 </body>
 </html>

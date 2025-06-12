@@ -5552,6 +5552,24 @@
             </div>
         </div>
     </div>
+	<div id="flightInfo"></div>
+
+
+	<script>
+		const selectedFlight = JSON.parse(localStorage.getItem('selectedFlight'));
+		if (selectedFlight) {
+		  console.log('Selected flight:', selectedFlight);
+		  // Render into your UI as needed
+		  document.getElementById('flightInfo').innerText = `
+			${selectedFlight.airline} ${selectedFlight.flightNumber}
+			${selectedFlight.dep} → ${selectedFlight.arr}
+			Duration: ${selectedFlight.duration}
+			Price: ${selectedFlight.price}
+		  `;
+		} else {
+		  console.warn('No selected flight found.');
+		}
+	  </script>
     <script src="js/bootstrap.bundle.min.js"></script>
 
     <script>
