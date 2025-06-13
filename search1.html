@@ -639,7 +639,7 @@
 						  </div>
 				    </div>
 				  </div>
-				  <div id="flightCards"></div>
+				  <div id="output"></div>
 				</div>
 			</div>
 		</div>
@@ -731,7 +731,90 @@
 </div>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Retrieve data from localStorage
+      const data = JSON.parse(localStorage.getItem("flightSearchData"));
+      if (data && data.data && data.data.going && data.data.going.results) {
+        renderFlights(data);
+      } else {
+        document.getElementById("output").innerHTML = "<p>No data found</p>";
+      }
+    });
 
+    function renderFlights(data) {
+      const output = document.getElementById("output");
+
+      output.innerHTML = ""; // clear first
+
+      data.data.going.results.forEach((flight) => {
+        // Mock or fallback for missing data
+        const dep = flight.date;
+        const arr = data.data.going.startDate; // or another field
+        const origin = data.data.going.origin;
+        const destination = data.data.going.destination;
+
+        // Card HTML
+        output.innerHTML += `
+          <div class="row g-0 mb-3 pb-2 border rounded shadow-sm bg-white">
+            <div class="col-md-8 p-3">
+              <h6 class="text-muted mb-2">Outbound</h6>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="fw-bold mb-0">${dep}</h5>
+                    <small class="text-warning fw-semibold">${origin}</small>
+                </div>
+                <div class="text-center">
+                    <span class="badge bg-light text-dark border mb-1">N/A</span>
+                    <img src="images/flights/${flight.airline}.png" width="32" alt="${flight.airline}">
+                    <div class="small text-muted">Direct</div>
+                </div>
+                <div>
+                    <h5 class="fw-bold mb-0">${arr}</h5>
+                    <small class="text-muted">${destination}</small>
+                </div>
+              </div>
+              <hr>
+              <h6 class="text-muted mb-2">Inbound</h6>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="fw-bold mb-0">N/A</h5>
+                    <small class="text-muted">N/A</small>
+                </div>
+                <div class="text-center">
+                    <span class="badge bg-light text-dark border mb-1">N/A</span>
+                    <img src="images/flights/${flight.airline}.png" width="32" alt="${flight.airline}">
+                    <a href="#" class="text-decoration-none small text-primary">N/A</a>
+                </div>
+                <div>
+                    <h5 class="fw-bold mb-0">N/A</h5>
+                    <small class="text-warning fw-semibold">N/A <i class="bi bi-exclamation-circle"></i></small>
+                </div>
+              </div>
+              <hr>
+              <div class="d-flex align-items-center gap-3">
+                <div><i class="bi bi-suitcase"></i> 1</div>
+                <div><i class="bi bi-people"></i> 0</div>
+                <div><i class="bi bi-trash"></i> 0</div>
+                <div class="ms-auto">
+                    <span class="badge bg-light text-dark border"><i class="bi bi-star-fill text-dark me-1"></i> Self-transfer hack</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex flex-column justify-content-center align-items-center p-3 border-start">
+              <h4 class="fw-bold mb-3">₹${flight.fare}</h4>
+              <button 
+                class="btn text-white w-100 select-btn" 
+                style="background-color:#188754; position: relative; top: 40%" 
+                data-flight='${JSON.stringify(flight)}'
+              >
+                Select
+              </button>
+            </div>
+          </div>`;
+      });
+    }
+  </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
@@ -1277,6 +1360,3 @@ setInterval(changeWord, 4000);
     </script>
 <script>
 </script>
-
-</body>
-</html>
