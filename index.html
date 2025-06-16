@@ -217,55 +217,46 @@
 					</div>
 					<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
+					
 					<div class="container py-3">
-					  <div class="row g-2 align-items-center justify-content-center">
-						
-						<!-- From to fetchFlights() -->
-						<div class="col-md-2 col-sm-6">
-						  <div class="border rounded px-3 py-2 d-flex align-items-center justify-content-between">
-							<span class="fw-semibold">From</span>
-							<div style="flex: 1; position: relative;">
-							<input type="text" class="form-control border-0 p-0 ms-2" placeholder="City, airport or place" style="box-shadow: none;" id="fromInput">
-							<div id="fromDropdown" class="autocomplete-dropdown"></div></div>
-						  </div>
-						</div>
-					
-						<!-- To -->
-						<div class="col-md-2 col-sm-6">
-						  <div class="border rounded px-3 py-2 d-flex align-items-center justify-content-between">
-							<span class="fw-semibold">To</span>
-							<div style="flex: 1; position: relative;">
-							<input type="text" class="form-control border-0 p-0 ms-2" placeholder="City, airport or place" style="box-shadow: none;" id="toInput">
-							<div id="toDropdown" class="autocomplete-dropdown"></div></div>
-						  </div>
-						</div>
-				
-						<div class="col-md-3 col-lg-3">
-							<div class="border rounded px-3 py-2 d-flex align-items-center justify-content-between">
-							<button id="dateTrigger" class="form-control d-flex justify-content-between align-items-center">
-							  <span><strong>Departure</strong> <span id="departureText" class="text-secondary">Anytime</span></span>
-							  <input type="hidden" id="departure">
-							</button>
-						  </div></div>
-						  
-						  <div class="col-md-3 col-lg-3">
-							<div class="border rounded px-3 py-2 d-flex align-items-center justify-content-between">
-							<button id="dateTrigger" class="form-control d-flex justify-content-between align-items-center">
-							  <span><strong>Return</strong> <span id="returnText" class="text-secondary">Anytime</span></span>
-							  <!-- Hidden inputs for real form submission -->
-							<input type="hidden" id="returnDate">
-							</button>
-						  </div></div>
+						<div class="d-flex align-items-center gap-2">
+							<div class="col-md-3 col-lg-3" style="flex-grow: 1; flex-shrink: 1;">
+								<div class="border rounded px-3 py-2 d-flex align-items-center justify-content-between" style="height: 49px;">
+									<span class="fw-semibold">From</span>
+									<div style="flex: 1; position: relative;">
+										<input id="fromInput" type="text" class="form-control border-0 p-0 ms-2" placeholder="City, airport or place" style="box-shadow: none;">
+										<div id="fromDropdown" class="autocomplete-dropdown" style="display: none;">
 
-					
-					
-							<!-- Explore Button -->
-							<div class="col-md-2 col-sm-6">
-							<!-- <button onclick="fetchFlights()" type="button" class="btn btn-teal w-100" style="background-color: #00b39f; color: white;">Explore</button> -->
-							<button onclick="fetchFlights()" type="button" class="btn btn-teal w-100" style="background-color: #00b39f; color: white;">Explore</button>
-							</div>					
-						</div>					
-					</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-lg-3" style="flex-grow: 1; flex-shrink: 1;">
+								<div class="border rounded px-3 py-2 d-flex align-items-center justify-content-between" style="height: 49px;">
+									<span class="fw-semibold">To</span>
+									<div style="flex: 1; position: relative;">
+										<input id="toInput" type="text" class="form-control border-0 p-0 ms-2" placeholder="City, airport or place" style="box-shadow: none;">
+										<div id="toDropdown" class="autocomplete-dropdown" style="display: none;"></div></div></div></div><div class="col-md-3 col-lg-3" style="flex-grow: 1; flex-shrink: 1;">
+											<div class="border rounded px-3 py-2 d-flex align-items-center justify-content-between">
+												<button id="dateTrigger" class="form-control d-flex justify-content-between align-items-center">
+													<span class="d-flex gap-1"><strong>Departure</strong>
+														<span id="departureText" class="text-secondary">Anytime</span>
+													</span>
+													<input id="departure" type="hidden">
+												</button>
+											</div>
+										</div>
+										<div class="col-md-3 col-lg-3" style="flex-grow: 1; flex-shrink: 1;">
+											<div class="border rounded px-3 py-2 d-flex align-items-center justify-content-between">
+												<button id="dateTrigger" class="form-control d-flex justify-content-between align-items-center">
+													<span class="d-flex gap-1"><strong>Return</strong> 
+														<span id="returnText" class="text-secondary">Anytime</span></span>
+														<input id="returnDate" type="hidden"></button>
+													</div>
+												</div>
+												<button onclick="fetchFlights()" type="button" class="btn btn-teal w-80" style="background-color: #00b39f; color: white;">Explore</button>
+											</div>
+										</div>
 					<div class="checkbooking">
 						<input type="checkbox" id="html" />
 	      				<label for="html">Check accommodation with <a href="javascript:;">Booking.com</a></label>

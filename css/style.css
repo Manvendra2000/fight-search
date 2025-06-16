@@ -101,7 +101,7 @@ padding: 0px;
 }
 
 .input-group {
-    border: 1px solid #BAC7D5;
+    border: 1px solid #BEC7D5;
     border-radius: 5px;
     outline: none;
     box-shadow: none;
@@ -1882,7 +1882,7 @@ border-radius: 16px;
 }
 
 ._tytyo {
-    border: solid 1px grey;
+    border: solid 1px #BEC7D5;
     border-radius: 10px;
     margin: 1px;
     max-width: 21%;
