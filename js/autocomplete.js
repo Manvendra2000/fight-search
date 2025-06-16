@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:8000/api/airports.php?q=${encodeURIComponent(query)}`);
+      const res = await fetch('/api/server.php?q=' + encodeURIComponent(query));
       const json = await res.json();
       const items = json?.data?.data || [];
 
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:8000/api/airports.php?q=${encodeURIComponent(query)}`);
+      const res = await fetch('/api/server.php?q=' + encodeURIComponent(query));
       const json = await res.json();
       const items = json?.data?.data || [];
 
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div.textContent = `${item.cityName}, ${item.countryName} (${item.airportCode})`;
         div.addEventListener("click", () => {
           toInput.value = div.textContent;
-          selectedToCode = item.airportCode; // ✅ Store code
+          selectedToCode = item.airportCode; //  Store code
           toDropdown.style.display = "none";
         });
         toDropdown.appendChild(div);
