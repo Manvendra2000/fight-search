@@ -5557,19 +5557,35 @@
 
 
 	<script>
-		const selectedFlight = JSON.parse(localStorage.getItem('selectedFlight'));
-		if (selectedFlight) {
-		  console.log('Selected flight:', selectedFlight);
-		  // Render into your UI as needed
-		  document.getElementById('flightInfo').innerText = `
-			${selectedFlight.airline} ${selectedFlight.flightNumber}
-			${selectedFlight.dep} → ${selectedFlight.arr}
-			Duration: ${selectedFlight.duration}
-			Price: ${selectedFlight.price}
-		  `;
-		} else {
-		  console.warn('No selected flight found.');
-		}
+		document.addEventListener("DOMContentLoaded", () => {
+		  const selectedFlight = JSON.parse(localStorage.getItem("selectedFlight"));
+		  if (selectedFlight) {
+			console.log("Selected flight.", selectedFlight);
+	  
+			// Extract details
+			const outbound = selectedFlight.itineraries[0]?.segments[0];
+			const inbound = selectedFlight.itineraries[1]?.segments[0];
+			const price = selectedFlight.price;
+	  
+			document.getElementById("flightInfo").innerHTML = `
+			  <h5>Outbound</h5>
+			  <p>${outbound.carrierCode} ${outbound.number} 
+				from ${outbound.departure.iataCode} to ${outbound.arrival.iataCode} 
+				at ${outbound.departure.at}. Duration: ${outbound.duration}</p>
+	  
+			  <h5>Inbound</h5>
+			  <p>${inbound ? inbound.carrierCode : ''} ${inbound ? inbound.number : ''} 
+				from ${inbound ? inbound.departure.iataCode : ''} to ${inbound ? inbound.arrival.iataCode : ''} 
+				at ${inbound ? inbound.departure.at : ''}. Duration: ${inbound ? inbound.duration : ''}</p>
+	  
+			  <h5>Price</h5>
+			  <p>${price.grandTotal} ${price.currency}</p>
+			`;
+		  } else {
+			console.warn("No selected flight found.");
+			document.getElementById("flightInfo").innerHTML = "<p>No selected flight.</p>";
+		  }
+		});
 	  </script>
     <script src="js/bootstrap.bundle.min.js"></script>
 
