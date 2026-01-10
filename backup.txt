@@ -157,3 +157,5 @@ setInterval(changeWord, 4000);
     });
 });
     </script>
+
+    class="bg-neutral-60 h-screen overflow-y-auto"

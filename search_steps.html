@@ -4407,6 +4407,7 @@
 		                                            </div>
 		                                        </div>
 		                                    </div>
+											<div id="flightInfo"></div>
 		                                    <div class="break-all orbit-box font-base box-border block lm:hidden"><button type="button" role="button" class="space-x-200 rtl:space-x-reverse h-form-box-normal text-normal bg-button-white-background hover:bg-button-white-background-hover active:bg-button-white-background-active disabled:bg-button-white-background focus:bg-button-white-background-focus text-button-white-foreground focus:text-button-white-foreground-focus active:text-button-white-foreground-active hover:text-button-white-foreground-hover disabled:text-button-white-foreground active:shadow-button-active-pale ps-button-padding-md pe-button-padding-sm orbit-button-primitive font-base duration-fast group relative max-w-full select-none items-center justify-center border-none text-center leading-none transition-all *:align-middle [&amp;_.orbit-loading-spinner]:stroke-current w-full flex-auto rounded-150 tb:rounded-100 cursor-pointer hover:no-underline focus:no-underline active:no-underline flex font-medium" style="--button-content-align: center;">
 		                                            <div class="orbit-button-primitive-content inline-block [justify-content:var(--button-content-align)] text-start flex-1">View full itinerary</div>
 		                                            <div class="orbit-button-primitive-icon flex items-center justify-center"><svg class="orbit-icon inline-block shrink-0 fill-current align-middle size-icon-medium" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
@@ -5552,6 +5553,24 @@
             </div>
         </div>
     </div>
+	
+
+
+	<script>
+		const selectedFlight = JSON.parse(localStorage.getItem('selectedFlight'));
+		if (selectedFlight) {
+		  console.log('Selected flight:', selectedFlight);
+		  // Render into your UI as needed
+		  document.getElementById('flightInfo').innerText = `
+			${selectedFlight.airline} ${selectedFlight.flightNumber}
+			${selectedFlight.dep} → ${selectedFlight.arr}
+			Duration: ${selectedFlight.duration}
+			Price: ${selectedFlight.price}
+		  `;
+		} else {
+		  console.warn('No selected flight found.');
+		}
+	  </script>
     <script src="js/bootstrap.bundle.min.js"></script>
 
     <script>
